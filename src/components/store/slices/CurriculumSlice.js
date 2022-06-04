@@ -207,10 +207,9 @@ export const getCurriculum = (ACCESS_TOKEN, currId) => async (dispatch) => {
   };
 
   axios
-    .get("/api/curriculums/" + currId, { headers })
+    .get("/api/curriculumvitaes/" + currId,)
     .then((res) => {
       dispatch(setCurriculum(res.data));
-      dispatch(setLoginPersOrCompName(res.data.persFirstName));
     })
     .catch((err) => {
       console.log(err.toJSON());

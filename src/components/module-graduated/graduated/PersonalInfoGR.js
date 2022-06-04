@@ -38,19 +38,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = yup.object({
-  persFirstName: yup.string("Escribe tu nombre").required("Campo requerido"),
-  persLastName: yup.string("Escribe tus apellidos").required("Campo requerido"),
-  persDocument: yup
+  firstName: yup.string("Escribe tu nombre").required("Campo requerido"),
+  lastName: yup.string("Escribe tus apellidos").required("Campo requerido"),
+  documentNumber: yup
     .string("Escribe tu número de identificación")
     .required("Campo requerido"),
-  persPhone: yup
+  phone: yup
     .string("Escribe tu teléfono principal")
     .required("Campo requerido"),
-  persEmail: yup
+  email: yup
     .string("Escribe tu correo electrónico")
     .email("Ingresa un correo electrónico valido")
     .required("Campo requerido"),
-  persAge: yup.number("Escribe tu Edad").required("Campo requerido"),
+  age: yup.number("Escribe tu Edad").required("Campo requerido"),
 });
 
 /**
@@ -108,7 +108,9 @@ const PersonalInfoGR = () => {
   const dispatch = useDispatch();
 
   // Get person saved of the store
-  const currentPerson = useSelector((state) => state.PersonSlice.person);
+  //const currentCurriculum = useSelector((state) => state.PersonSlice.person);
+  // Get currentCurriculum o
+  const currentCurriculum = useSelector((state) => state.CurriculumSlice.Curriculum);
 
   //Correspond of list of countries saved in the store.
   const listCountries = useSelector(
@@ -126,8 +128,8 @@ const PersonalInfoGR = () => {
    */
 
   useEffect(() => {
-    if (currentPerson) {
-      setDisability(currentPerson.persIsDisability);
+    if (currentCurriculum) {
+      setDisability(currentCurriculum.persIsDisability);
     }
   }, []);
 
@@ -153,20 +155,20 @@ const PersonalInfoGR = () => {
   const formik = useFormik({
     // Corresponds to the basic information of a person
     initialValues: {
-      persId: currentPerson.persId,
-      persFirstName: currentPerson.persFirstName,
-      persLastName: currentPerson.persLastName,
-      persDocumentType: currentPerson.persDocumentType,
-      persDocument: currentPerson.persDocument,
-      persGenre: currentPerson.persGenre,
-      persCountryName: currentPerson.persCountryName,
-      persCityName: currentPerson.persCityName,
-      persMaritalStatus: currentPerson.persMaritalStatus,
-      persPhone: currentPerson.persPhone,
-      persEmail: currentPerson.persEmail,
-      persDateOfBirth: "",
-      persAge: currentPerson.persAge,
-      persEthnicGroup: currentPerson.persEthnicGroup,
+      _id: currentCurriculum._id,
+      firstName: currentCurriculum.firstName,
+      lastName: currentCurriculum.lastName,
+      typeOfDocument: currentCurriculum.typeOfDocument,
+      documentNumber: currentCurriculum.documentNumber,
+      gender: currentCurriculum.gender,
+      countryName: currentCurriculum.countryName,
+      cityName: currentCurriculum.cityName,
+      maritalStatus: currentCurriculum.maritalStatus,
+      phone: currentCurriculum.phone,
+      email: currentCurriculum.email,
+      birthDate: "",
+      age: currentCurriculum.age,
+      ethnicGroup: currentCurriculum.ethnicGroup,
     },
 
     validationSchema: validationSchema,
@@ -181,38 +183,38 @@ const PersonalInfoGR = () => {
       /**
        * Formatted dates
        */
-      const [year, month, day] = personalInfo.persDateOfBirth.split("-");
+      const [year, month, day] = personalInfo.birthDate.split("-");
       // Verified that date have the size of default
       const formattedStDate =
-        personalInfo.persDateOfBirth.length !==
-        currentPerson.persDateOfBirth.length
-          ? currentPerson.persDateOfBirth
+        personalInfo.birthDate.length !==
+        currentCurriculum.birthDate.length
+          ? currentCurriculum.birthDate
           : day + "/" + month + "/" + year;
-      personalInfo.persDocumentType =
-        personalInfo.persDocumentType !== ""
-          ? personalInfo.persDocumentType
+      personalInfo.typeOfDocument =
+        personalInfo.typeOfDocument !== ""
+          ? personalInfo.typeOfDocument
           : getTypeDocument;
-      personalInfo.persDateOfBirth = formattedStDate;
-      personalInfo.persGenre =
-        personalInfo.persGenre !== "" ? personalInfo.persGenre : getGenre;
-      personalInfo.persMaritalStatus =
-        personalInfo.persMaritalStatus !== ""
-          ? personalInfo.persMaritalStatus
+      personalInfo.birthDate = formattedStDate;
+      personalInfo.gender =
+        personalInfo.gender !== "" ? personalInfo.gender : getGenre;
+      personalInfo.maritalStatus =
+        personalInfo.maritalStatus !== ""
+          ? personalInfo.maritalStatus
           : getCivilStatus;
-      personalInfo.persCountryName =
-        getCountry.name !== "" ? getCountry.name : personalInfo.persCountryName;
-      personalInfo.persCityName =
-        getCity !== "" ? getCity : personalInfo.persCityName;
+      personalInfo.countryName =
+        getCountry.name !== "" ? getCountry.name : personalInfo.countryName;
+      personalInfo.cityName =
+        getCity !== "" ? getCity : personalInfo.cityName;
       personalInfo.persIsDisability = getDisability;
-      personalInfo.persEthnicGroup =
-        getEthnicGroup !== "" ? getEthnicGroup : personalInfo.persEthnicGroup;
+      personalInfo.ethnicGroup =
+        getEthnicGroup !== "" ? getEthnicGroup : personalInfo.ethnicGroup;
 
       console.log(personalInfo);
       //   alert(JSON.stringify(personalInfo, null, 2));
       // Send the information to the store and send to backend
       dispatch(updateperson(ACCESS_TOKEN, personalInfo.persId, personalInfo));
       // Reset date of birth
-      personalInfo.persDateOfBirth = "";
+      personalInfo.birthDate = "";
     },
   });
 
@@ -234,8 +236,8 @@ const PersonalInfoGR = () => {
    * @returns  date in correct format
    */
   const getDefaultDate = () => {
-    const [day, month, year] = currentPerson.persDateOfBirth.split("/");
-    return year + "-" + month + "-" + day;
+  //  const [day, month, year] = currentCurriculum.birthDate;
+    return currentCurriculum.birthDat;
   };
 
   return (
@@ -245,32 +247,32 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name="persFirstName"
+              name="firstName"
               label="Nombres"
-              value={formik.values.persFirstName}
+              value={formik.values.firstName}
               onChange={formik.handleChange}
               error={
-                formik.touched.persFirstName &&
-                Boolean(formik.errors.persFirstName)
+                formik.touched.firstName &&
+                Boolean(formik.errors.firstName)
               }
               helperText={
-                formik.touched.persFirstName && formik.errors.persFirstName
+                formik.touched.firstName && formik.errors.firstName
               }
             />
           </Grid>
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name="persLastName"
+              name="lastName"
               label="Apellidos"
-              value={formik.values.persLastName}
+              value={formik.values.lastName}
               onChange={formik.handleChange}
               error={
-                formik.touched.persLastName &&
-                Boolean(formik.errors.persLastName)
+                formik.touched.lastName &&
+                Boolean(formik.errors.lastName)
               }
               helperText={
-                formik.touched.persLastName && formik.errors.persLastName
+                formik.touched.lastName && formik.errors.lastName
               }
             />
           </Grid>
@@ -279,7 +281,7 @@ const PersonalInfoGR = () => {
             <Autocomplete
               fullWidth
               disablePortal
-              defaultValue={formik.values.persDocumentType}
+              defaultValue={formik.values.typeOfDocument}
               id="combo-box-demo"
               options={typeDocument}
               onChange={(e, value) => setTypeDocument(value)}
@@ -292,16 +294,16 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name="persDocument"
+              name="documentNumber"
               label="Número documento"
-              value={formik.values.persDocument}
+              value={formik.values.documentNumber}
               onChange={formik.handleChange}
               error={
-                formik.touched.persDocument &&
-                Boolean(formik.errors.persDocument)
+                formik.touched.documentNumber &&
+                Boolean(formik.errors.documentNumber)
               }
               helperText={
-                formik.touched.persDocument && formik.errors.persDocument
+                formik.touched.documentNumber && formik.errors.documentNumber
               }
             />
           </Grid>
@@ -310,7 +312,7 @@ const PersonalInfoGR = () => {
             <TextField
               fullWidth
               required
-              name="persDateOfBirth"
+              name="birthDate"
               type="date"
               label="Fecha de nacimiento"
               defaultValue={getDefaultDate()}
@@ -322,7 +324,7 @@ const PersonalInfoGR = () => {
             <Autocomplete
               fullWidth
               disablePortal
-              defaultValue={formik.values.persGenre}
+              defaultValue={formik.values.gender}
               id="combo-box-demo"
               options={genre}
               onChange={(e, value) => setGenre(value)}
@@ -335,7 +337,7 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <Autocomplete
               fullWidth
-              defaultValue={formik.values.persMaritalStatus}
+              defaultValue={formik.values.maritalStatus}
               disablePortal
               id="combo-box-demo"
               options={civilStatus}
@@ -349,9 +351,9 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <Autocomplete
               freeSolo
-              id="free-solo-persCountryName"
+              id="free-solo-countryName"
               disableClearable
-              defaultValue={{ name: formik.values.persCountryName }}
+              defaultValue={{ name: formik.values.countryName }}
               /**
                * List of cities
                */
@@ -383,8 +385,8 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <Autocomplete
               freeSolo
-              id="free-solo-persCityName"
-              defaultValue={formik.values.persCityName}
+              id="free-solo-cityName"
+              defaultValue={formik.values.cityName}
               disableClearable
               /**
                * List of cities
@@ -418,26 +420,26 @@ const PersonalInfoGR = () => {
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name="persPhone"
+              name="phone"
               label="Número de Teléfono"
-              value={formik.values.persPhone}
+              value={formik.values.phone}
               onChange={formik.handleChange}
               error={
-                formik.touched.persPhone && Boolean(formik.errors.persPhone)
+                formik.touched.phone && Boolean(formik.errors.phone)
               }
-              helperText={formik.touched.persPhone && formik.errors.persPhone}
+              helperText={formik.touched.phone && formik.errors.phone}
             />
           </Grid>
 
           <Grid item xs={6}>
             <TextField
               fullWidth
-              name="persAge"
+              name="age"
               label="Edad"
-              value={formik.values.persAge}
+              value={formik.values.age}
               onChange={formik.handleChange}
-              error={formik.touched.persAge && Boolean(formik.errors.persAge)}
-              helperText={formik.touched.persAge && formik.errors.persAge}
+              error={formik.touched.age && Boolean(formik.errors.age)}
+              helperText={formik.touched.age && formik.errors.age}
             />
           </Grid>
 
@@ -447,7 +449,7 @@ const PersonalInfoGR = () => {
               disablePortal
               id="combo-box-demo"
               options={ethnicGroup}
-              defaultValue={formik.values.persEthnicGroup}
+              defaultValue={formik.values.ethnicGroup}
               onChange={(e, value) => setEthnicGroup(value)}
               renderInput={(params) => (
                 <TextField {...params} label="Grupo étnico" required />
@@ -458,15 +460,15 @@ const PersonalInfoGR = () => {
           <Grid item xs={12}>
             <TextField
               fullWidth
-              name="persEmail"
+              name="email"
               label="Correo Electrónico"
               type="email"
-              value={formik.values.persEmail}
+              value={formik.values.email}
               onChange={formik.handleChange}
               error={
-                formik.touched.persEmail && Boolean(formik.errors.persEmail)
+                formik.touched.email && Boolean(formik.errors.email)
               }
-              helperText={formik.touched.persEmail && formik.errors.persEmail}
+              helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
 

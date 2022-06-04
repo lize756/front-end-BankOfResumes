@@ -15,7 +15,10 @@ import * as yup from "yup";
  * Redux
  */
 import { useDispatch, useSelector } from "react-redux";
-import { addCurriculum, setCurriculum } from "../../store/slices/CurriculumSlice";
+import {
+  addCurriculum,
+  setCurriculum,
+} from "../../store/slices/CurriculumSlice";
 /**
  * Styles of the visual part of the component
  */
@@ -38,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = yup.object({
-  currDescription: yup
+  description: yup
     .string("Escribe una descripción de tu perfil")
     .required("Campo requerido"),
 });
@@ -97,9 +100,9 @@ const JobProfileGR = () => {
   // Allow to send the elements of store
   const dispatch = useDispatch();
   const list_carreers = useSelector((state) => state.CareerSlice.listCareers);
-//Get acces_token of the user that start section
-const ACCESS_TOKEN =
-"Bearer " + useSelector((state) => state.userLogin).responseUserLogin.token;
+  //Get acces_token of the user that start section
+  const ACCESS_TOKEN =
+    "Bearer " + useSelector((state) => state.userLogin).responseUserLogin.token;
   //================================================= Functions ===================================================
 
   /**
@@ -116,7 +119,7 @@ const ACCESS_TOKEN =
   };
   const formik = useFormik({
     initialValues: {
-      currDescription: "",
+      description: "",
     },
 
     validationSchema: validationSchema,
@@ -124,12 +127,12 @@ const ACCESS_TOKEN =
     onSubmit: (values) => {
       const jobProfileGraduated = values;
       jobProfileGraduated.currCreateDate = new Date().toLocaleDateString();
-      jobProfileGraduated.currSalary = getWage;
-      jobProfileGraduated.currExperience = getYearsExperience;
+      jobProfileGraduated.wageAspiration = getWage;
+      jobProfileGraduated.yearsOfExperience = getYearsExperience;
       jobProfileGraduated.careers = careers;
-      jobProfileGraduated.currIsLaborMobility = getLaborMobility;
+      jobProfileGraduated.isCanMove = getLaborMobility;
 
-     // alert(JSON.stringify(jobProfileGraduated, null, 2));
+      // alert(JSON.stringify(jobProfileGraduated, null, 2));
       console.log(jobProfileGraduated);
       //Send info of the curriculum to the store
       dispatch(setCurriculum(jobProfileGraduated));
@@ -144,6 +147,7 @@ const ACCESS_TOKEN =
         <Grid container spacing={2} mr={4}>
           <Grid item xs={12}>
             <Autocomplete
+              freeSolo
               multiple
               fullWidth
               options={list_carreers}
@@ -165,16 +169,16 @@ const ACCESS_TOKEN =
               fullWidth
               multiline
               rows={4}
-              name="currDescription"
+              name="description"
               label="Descripción de tu perfil"
-              value={formik.values.currDescription}
+              value={formik.values.description}
               onChange={formik.handleChange}
               error={
-                formik.touched.currDescription &&
-                Boolean(formik.errors.currDescription)
+                formik.touched.description &&
+                Boolean(formik.errors.description)
               }
               helperText={
-                formik.touched.currDescription && formik.errors.currDescription
+                formik.touched.description && formik.errors.description
               }
             />
           </Grid>

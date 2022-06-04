@@ -81,10 +81,10 @@ const LanguagesGR = () => {
   const [studies, setStudies] = useState([
     {
       languId: uuidv4(),
-      languName: "",
-      languLevel: "",
-      languEndDate: "",
-      languInstitutionName: "",
+      language: "",
+      level: "",
+      endDate: "",
+      institutionName: "",
     },
   ]);
 
@@ -114,10 +114,10 @@ const LanguagesGR = () => {
       ...studies,
       {
         languId: uuidv4(),
-        languName: "",
-        languLevel: "",
-        languEndDate: "",
-        languInstitutionName: "",
+        language: "",
+        level: "",
+        endDate: "",
+        institutionName: "",
       },
     ]);
   };
@@ -144,7 +144,7 @@ const LanguagesGR = () => {
     const newStudy = studies.map((i) => {
       if (languId === i.languId) {
         i[e.target.name] = e.target.value;
-        if (e.target.name === "languEndDate") {
+        if (e.target.name === "endDate") {
           const [year, month, day] = e.target.value.split("-");
           const formattedStDate = `${day}/${month}/${year}`;
           i[e.target.name] = formattedStDate;
@@ -167,12 +167,12 @@ const LanguagesGR = () => {
               <Autocomplete
                 fullWidth
                 disablePortal
-                name="languName"
+                name="language"
                 id="combo-box-demo"
                 options={language}
                 onChange={(e, value) => {
                   handleChange(study.languId, {
-                    target: { value: value, name: "languName" },
+                    target: { value: value, name: "language" },
                   });
                 }}
                 renderInput={(params) => (
@@ -187,7 +187,7 @@ const LanguagesGR = () => {
                 options={level}
                 onChange={(e, value) => {
                   handleChange(study.languId, {
-                    target: { value: value, name: "languLevel" },
+                    target: { value: value, name: "level" },
                   });
                 }}
                 renderInput={(params) => (
@@ -201,7 +201,7 @@ const LanguagesGR = () => {
               <TextField
                 required
                 fullWidth
-                name="languEndDate"
+                name="endDate"
                 label="Fecha de finalización"
                 variant="outlined"
                 InputLabelProps={{ shrink: true, required: true }}
@@ -210,10 +210,10 @@ const LanguagesGR = () => {
               />
 
               <TextField
-                name="languInstitutionName"
+                name="institutionName"
                 label="Institución en la que estudio"
                 variant="outlined"
-                value={study.languInstitutionName}
+                value={study.institutionName}
                 placeholder="Universidad ICESI"
                 onChange={(e) => handleChange(study.languId, e)}
               />

@@ -23,9 +23,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getperson } from "../../components/store/slices/PersonSlice";
 import { getcareers } from "../../components/store/slices/CareerSlice";
 import {
+  getCurriculum,
   setAcademicStudies,
   setCurriculum,
 } from "../../components/store/slices/CurriculumSlice";
+import { getCountries } from "../../components/store/slices/CountrySlice";
 
 const IconWrapperStyle = styled("div")(({ theme }) => ({
   margin: "auto",
@@ -47,18 +49,20 @@ const ContentsGraduated = () => {
   // Get person id of the store
   const userPersonId = useSelector((state) => state.userLogin.userPersonId);
   //Get acces_token of the user that start section
-  const ACCESS_TOKEN =
-    "Bearer " + useSelector((state) => state.userLogin).responseUserLogin.token;
+  const ACCESS_TOKEN = useSelector((state) => state.userLogin).responseUserLogin.token;
 
+  const userCurriculumId = useSelector((state) => state.userLogin.userCurriculumId);
   const currentPerson = useSelector((state) => state.PersonSlice.person);
   //Axios
   useEffect(() => {
     //Adde to store the person that user login
-    dispatch(getperson(ACCESS_TOKEN, userPersonId));
+   // dispatch(getperson(ACCESS_TOKEN, userPersonId));
     //Added to store of list of carreers.
-    dispatch(getcareers(ACCESS_TOKEN));
+    //dispatch(getcareers(ACCESS_TOKEN));
     //Added to store of curriculum of the person
-    dispatch(setCurriculum(currentPerson.curriculum));
+    //dispatch(setCurriculum(currentPerson.curriculum));
+    dispatch(getCountries())
+    dispatch(getCurriculum(ACCESS_TOKEN, userCurriculumId));
   }, []);
   return (
     <div>

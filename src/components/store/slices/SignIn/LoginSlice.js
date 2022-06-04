@@ -10,7 +10,7 @@ import { resetCareerSliceState } from "../CareerSlice";
 import { resetCompanySliceState } from "../CompanySlice";
 import { resetContactSliceState } from "../ContactSlice";
 import { resetCountrySliceState } from "../CountrySlice";
-import { resetCurriculumSliceState } from "../CurriculumSlice";
+import { resetCurriculumSliceState, setCurriculum } from "../CurriculumSlice";
 import { resetInternRequestSliceState } from "../InternRequestSlice";
 import { resetPersonSliceState } from "../PersonSlice";
 import { resetUserrSliceState } from "../UserrSlice";
@@ -32,6 +32,7 @@ const initialState = () => ({
   rolee: "",
   userCompanyId: "",
   userPersonId: "",
+  userCurriculumId: "",
 });
 
 export const LoginSlice = createSlice({
@@ -61,6 +62,10 @@ export const LoginSlice = createSlice({
     setUserCompanyId: (state, action) => {
       state.userCompanyId = action.payload;
     },
+    setUserCurriculumId: (state, action) => {
+      state.userCurriculumId = action.payload;
+    }
+
   },
 });
 
@@ -131,17 +136,21 @@ const resetAllState = (dispatch) => {
 export const sendToken = (data) => async (dispatch) => {
   dispatch(setIsLogin(true));
   await axios
-    .post("api/auth/login", data)
+    .post("api/auth/signIn", data)
     .then((response) => {
+      dispatch(setIsLogin(false));
       dispatch(setResponseUserLogin(response.data));
+      console.log("entre", response.data.userFound);
       //Update this rol in the initial state
-      dispatch(setRolee(response.data.user.authorities[0].authority));
-      dispatch(setUserCompanyId(response.data.userCompanyId));
-      dispatch(setUserPersonId(response.data.userPersonId));
-      dispatch(setUserName(response.data.user.username));
+      dispatch(setRolee(response.data.userFound.roles[0].name));
+      dispatch(setUserCurriculumId(response.data.userFound.curriculumVitae));
+      // dispatch(setUserCompanyId(response.data.userCompanyId));
+      // dispatch(setUserPersonId(response.data.userPersonId));
+      // dispatch(setUserName(response.data.user.username));
     })
     .catch((err) => {
       console.log(err.toJSON());
+      console.log(err.response.data);
       dispatch(setResponseUserLogin({}));
       dispatch(setIsLogin(false));
       // Allow display alert when not change correctly the password.
@@ -200,6 +209,7 @@ export const changePassword = (data) => async (dispatch) => {
 export const {
   logout,
   setUserName,
+  setUserCurriculumId,
   resetLoginState,
   setLoginPersOrCompName,
   reset,

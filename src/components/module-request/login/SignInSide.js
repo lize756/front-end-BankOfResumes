@@ -40,11 +40,11 @@ function Copyright() {
 }
 
 const validationSchema = yup.object({
-  userName: yup
+  email: yup
     .string("Digita tu correo electrónico")
     .email("Ingresa un correo electrónico válido")
     .required("El correo electrónico es requerido"),
-  userPassword: yup
+  password: yup
     .string("Por favor ingresé su contraseña")
     .required("La contraseña es requerida"),
   // .matches(
@@ -70,8 +70,8 @@ export default function SignInSide() {
   const typeAlert = useSelector((state) => state.AlertSlice.typeAlert);
 
   const loginUser = {
-    userName: "",
-    userPassword: "",
+    email: "",
+    password: "",
   };
 
   //------------Handlechange functions-------------------------------
@@ -109,31 +109,31 @@ export default function SignInSide() {
           margin="normal"
           required
           fullWidth
-          id="userName"
-          name="userName"
+          id="email"
+          name="email"
           autocomplete
           type="email"
           label="Dirección de correo electrónico"
-          value={formik.values.userName}
+          value={formik.values.email}
           onChange={formik.handleChange}
-          error={formik.touched.userName && Boolean(formik.errors.userName)}
-          helperText={formik.touched.userName && formik.errors.userName}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
         />
         <TextField
           margin="normal"
           required
           fullWidth
-          name="userPassword"
+          name="password"
           label="Contraseña"
           type="password"
-          id="userPassword"
+          id="password"
           autoComplete="current-password"
-          value={formik.values.userPassword}
+          value={formik.values.password}
           onChange={formik.handleChange}
           error={
-            formik.touched.userPassword && Boolean(formik.errors.userPassword)
+            formik.touched.password && Boolean(formik.errors.password)
           }
-          helperText={formik.touched.userPassword && formik.errors.userPassword}
+          helperText={formik.touched.password && formik.errors.password}
         />
         <Button
           type="submit"
