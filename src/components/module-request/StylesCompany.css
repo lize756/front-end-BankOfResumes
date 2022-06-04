@@ -1,0 +1,38 @@
+.home-container {
+  text-align: center;
+  padding: 10px;
+}
+
+img {
+  padding: 10px;
+}
+
+h2 {
+  background-color: #072079;
+  width: auto;
+  color: white;
+}
+
+.accordion-padding{
+  padding-top: 5%;
+  padding-right: 5%;
+  padding-left: 5%;
+  
+}
+
+.MuiAccordionDetails-root{
+  background-color: #F2F6FE;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.MuiTextField-root{
+  background-color: white;
+  border-color: #2764E3;
+  border-radius: 5px;
+}
+.MuiTypography-root	{
+  text-align: "Center";
+}
+

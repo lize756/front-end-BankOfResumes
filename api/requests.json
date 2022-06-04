@@ -1,0 +1,101 @@
+{
+  "requests": [
+    {
+      "id": 1,
+      "faculty": "Ingenieria",
+      "Careers": "Industrial",
+      "inteRequNumber": 4,
+      "inteRequDateStart": "2020-02-13",
+      "inteRequDepartment": "Recursos Humanos ",
+      "inteRequFunctions": "Conocimiento de capacidades",
+      "inteRequcompetence": "Competenecia 1 ",
+      "inteRequBondingType": "Contracto de aprendizaje",
+      "inteRequDuration": "6 Meses",
+      "inteRequSalary": "1.200.000",
+      "inteRequBenefitss": "Ninguno"
+    },
+    {
+      "id": 6800,
+      "faculty": "Facultad",
+      "inteRequDepartment": "",
+      "inteRequNumber": 0,
+      "inteRequDateStart": "",
+      "inteRequFunctions": "",
+      "inteRequcompetence": "",
+      "inteRequBondingType": "",
+      "inteRequDuration": "",
+      "inteRequSalary": "",
+      "inteRequBenefits": ""
+    },
+    {
+      "id": 928,
+      "faculty": "Facultad",
+      "careers": "carrera",
+      "inteRequDepartment": "",
+      "inteRequNumber": 0,
+      "inteRequDateStart": "",
+      "inteRequFunctions": "",
+      "inteRequcompetence": "",
+      "inteRequBondingType": "",
+      "inteRequDuration": "",
+      "inteRequSalary": "",
+      "inteRequBenefits": ""
+    },
+    {
+      "id": 1501,
+      "faculty": "Facultad",
+      "inteRequDepartment": "",
+      "inteRequNumber": 0,
+      "inteRequDateStart": "",
+      "inteRequFunctions": "",
+      "inteRequcompetence": "",
+      "inteRequBondingType": "",
+      "inteRequDuration": "",
+      "inteRequSalary": "",
+      "inteRequBenefits": ""
+    },
+    {
+      "id": 3182,
+      "faculty": "Facultad",
+      "inteRequDepartment": "",
+      "inteRequNumber": 0,
+      "inteRequDateStart": "",
+      "inteRequFunctions": "",
+      "inteRequcompetence": "",
+      "inteRequBondingType": "",
+      "inteRequDuration": "",
+      "inteRequSalary": "",
+      "inteRequBenefits": ""
+    },
+    {
+      "id": 3971,
+      "inteRequCreate": "18-03-2022",
+      "inteRequDuration": "",
+      "inteRequName": "",
+      "inteRequNumber": 0,
+      "inteRequSalary": "",
+      "inteRequDepartament": "",
+      "inteRequStDate": "2022-03-11",
+      "inteRequFunctions": "",
+      "inteRequCompetencies": "",
+      "inteRequBondingType": "",
+      "inteRequOtherBenefits": "",
+      "faculty": "Facultad"
+    },
+    {
+      "id": 1053,
+      "inteRequCreate": "18-03-2022",
+      "inteRequDuration": "",
+      "inteRequName": "",
+      "inteRequNumber": 0,
+      "inteRequSalary": "",
+      "inteRequDepartament": "",
+      "inteRequStDate": "2022-03-11",
+      "inteRequFunctions": "",
+      "inteRequCompetencies": "",
+      "inteRequBondingType": "",
+      "inteRequOtherBenefits": "",
+      "faculty": "Facultad"
+    }
+  ]
+}
