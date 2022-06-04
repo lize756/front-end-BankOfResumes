@@ -29,12 +29,12 @@ const CurriculumGL = () => {
 
   const careerProfile = () => {
     let concatCareers = "";
-    const array = currentProfile.curriculum.careers;
+    const array = currentProfile.jobProfile.careers;
     for (let i = 0; i < array.length; i++) {
       if (i === array.length - 1) {
-        concatCareers += array[i].careName;
+        concatCareers += array[i].carsName;
       } else {
-        concatCareers += array[i].careName + ", ";
+        concatCareers += array[i].carsName + ", ";
       }
     }
     setCareers(concatCareers);
@@ -50,9 +50,9 @@ const CurriculumGL = () => {
               <SchoolIcon sx={{ width: 75, height: 75 }} color="primary" />
               <Stack spacing={1}>
                 <Typography variant="h4" component="h4" color="primary">
-                  {currentProfile.persFirstName +
+                  {currentProfile.personalInformation.firstName +
                     " " +
-                    currentProfile.persLastName}
+                    currentProfile.personalInformation.lastName}
                 </Typography>
                 <Typography variant="h6" component="h5" color="#072079">
                   {getCareers}
@@ -61,23 +61,20 @@ const CurriculumGL = () => {
             </Stack>
           </Grid>
         </Grid>
-        <PersonalInfoGL person={currentProfile} />
+        <PersonalInfoGL person={currentProfile.personalInformation} />
       </Paper>
-      <JobProfileGL curriculum={currentProfile.curriculum} />
+      <JobProfileGL curriculum={currentProfile.jobProfile} />
 
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {currentProfile.curriculum.academicstudies
-          ? currentProfile.curriculum.academicstudies.map((academic) => {
+        {currentProfile.curriculum.academicFormation
+          ? currentProfile.curriculum.academicFormation.map((academic) => {
               return (
                 <Grid item xs={6} mt={4}>
-                  <AcademicTrainingGL
-                    key={academic.acadStudId}
-                    academic={academic}
-                  />
+                  <AcademicTrainingGL key={academic._id} academic={academic} />
                 </Grid>
               );
             })
@@ -90,22 +87,16 @@ const CurriculumGL = () => {
         columns={{ xs: 4, sm: 8, md: 12 }}
         mt={4}
       >
-        {currentProfile.curriculum.languages
-          ? currentProfile.curriculum.languages.map((language) => {
+        {currentProfile.languages
+          ? currentProfile.languages.map((language) => {
               return (
                 <Grid item xs={6} mt={4}>
-                  <LanguagesGL key={language.languId} language={language} />
+                  <LanguagesGL key={language._id} language={language} />
                 </Grid>
               );
             })
           : ""}
       </Grid>
-
-      <Stack mt={2} alignItems="center">
-        <Button variant="contained" component="span">
-          Descargar
-        </Button>
-      </Stack>
     </>
   );
 };

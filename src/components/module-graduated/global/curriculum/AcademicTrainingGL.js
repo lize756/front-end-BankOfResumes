@@ -62,24 +62,24 @@ const AcademicTrainingGL = ({ academic }) => {
             </Grid>
             <Grid item xs={6}>
               <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudLevel}
+                {academic.levelStudy}
               </Typography>
               <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudStatus}
+                {academic.studioStatus}
               </Typography>
               <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudInsti}
-              </Typography>
-
-              <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudTitule}
-              </Typography>
-              <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudStartDate}
+                {academic.institutionName}
               </Typography>
 
               <Typography variant="body1" component="h6" gutterBottom>
-                {academic.acadStudEndDate}
+                {academic.degreeAwarded}
+              </Typography>
+              <Typography variant="body1" component="h6" gutterBottom>
+                {academic.startDate}
+              </Typography>
+
+              <Typography variant="body1" component="h6" gutterBottom>
+                {academic.endDate}
               </Typography>
             </Grid>
           </Grid>

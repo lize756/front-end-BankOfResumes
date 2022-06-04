@@ -12,7 +12,7 @@ const PersonalInfoGL = ({ person }) => {
             sx={{ fontWeight: "bold" }}
             gutterBottom
           >
-            {person.persDocumentType + ": "}
+            {person.typeOfDocument + ": "}
           </Typography>
           <Typography
             variant="body1"
@@ -57,22 +57,22 @@ const PersonalInfoGL = ({ person }) => {
         </Grid>
         <Grid item xs={2}>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persDocument}
+            {person.documentNumber}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persPhone}
+            {person.phone}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persGenre}
+            {person.gender}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persAge + " años"}
+            {person.age + " años"}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persMaritalStatus}
+            {person.maritalStatus}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persDateOfBirth}
+            {person.birthDate}
           </Typography>
         </Grid>
 
@@ -121,19 +121,19 @@ const PersonalInfoGL = ({ person }) => {
         </Grid>
         <Grid item xs={2}>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persCountryName}
+            {person.countryName}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persCityName}
+            {person.cityName}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persEmail}
+            {person.email}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persEthnicGroup}
+            {person.ethnicGroup}
           </Typography>
           <Typography variant="body1" component="h6" gutterBottom>
-            {person.persIsDisability === true ? "SI" : "NO"}
+            {person.isDisabled}
           </Typography>
         </Grid>
       </Grid>

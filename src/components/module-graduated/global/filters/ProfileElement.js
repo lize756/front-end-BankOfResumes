@@ -59,7 +59,11 @@ const ProfileElement = ({ index, profile }) => {
             </Avatar>
           </ListItemAvatar>
           <ListItemText
-            primary={profile.persFirstName + " " + profile.persLastName}
+            primary={
+              profile.personalInformation.firstName +
+              " " +
+              profile.personalInformation.lastName
+            }
             secondary={
               <Grid container spacing={2}>
                 <Grid item xs={4}>
@@ -69,14 +73,14 @@ const ProfileElement = ({ index, profile }) => {
                     variant="body2"
                     color="text.primary"
                   >
-                    {"Email: " + profile.persEmail}
+                    {"Email: " + profile.personalInformation.email}
                   </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                  {"Edad: " + profile.persAge}
+                  {"Edad: " + profile.personalInformation.age}
                 </Grid>
                 <Grid item xs={4}>
-                  {"Género: " + profile.persGenre}
+                  {"Género: " + profile.personalInformation.gender}
                 </Grid>
               </Grid>
             }

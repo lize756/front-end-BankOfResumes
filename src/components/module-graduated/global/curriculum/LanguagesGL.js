@@ -49,17 +49,17 @@ const LanguagesGL = ({ language }) => {
             </Grid>
             <Grid item xs={5}>
               <Typography variant="body1" component="h6" gutterBottom>
-                {language.languName}
+                {language.language}
               </Typography>
               <Typography variant="body1" component="h6" gutterBottom>
-                {language.languLevel}
+                {language.level}
               </Typography>
               <Typography variant="body1" component="h6" gutterBottom>
-                {language.languInstitutionName}
+                {language.institutionName}
               </Typography>
 
               <Typography variant="body1" component="h6" gutterBottom>
-                {language.languEndDate}
+                {language.endDate}
               </Typography>
             </Grid>
           </Grid>

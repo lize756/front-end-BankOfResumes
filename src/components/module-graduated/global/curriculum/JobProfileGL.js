@@ -25,8 +25,8 @@ const JobProfileGL = ({ curriculum }) => {
               {curriculum.careers.map((career) => {
                 return (
                   <Chip
-                    key={career.careId}
-                    label={career.careName}
+                    key={career._id}
+                    label={career.carsName}
                     color="warning"
                     variant="outlined"
                   />
@@ -39,7 +39,7 @@ const JobProfileGL = ({ curriculum }) => {
               Aspiración salarial
             </Typography>
             <Chip
-              label={curriculum.currSalary + " millones de pesos"}
+              label={curriculum.wageAspiration + " millones de pesos"}
               color="error"
               variant="outlined"
             />
@@ -49,7 +49,7 @@ const JobProfileGL = ({ curriculum }) => {
               ¿Puede mudarse a otra ciudad o país?
             </Typography>
             <Chip
-              label={curriculum.currIsLaborMobility === true ? "SI" : "NO"}
+              label={curriculum.isCanMove === true ? "SI" : "NO"}
               color="error"
               variant="outlined"
             />
@@ -59,7 +59,7 @@ const JobProfileGL = ({ curriculum }) => {
               Años de experiencia
             </Typography>
             <Chip
-              label={curriculum.currExperience + " años de experiencia"}
+              label={curriculum.yearsOfExperience + " años de experiencia"}
               color="error"
               variant="outlined"
             />
